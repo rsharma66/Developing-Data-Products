@@ -105,7 +105,7 @@ shinyUI(pageWithSidebar(
 
 shinyServer(
         function(input, output) {
-           output$myContango <- renderPlot({
+           output$myContango <- reactivePlot({
                    library(shiny)
                    library(zoo)
                    # We access a saved version of the cleaned up Oil Futures data going back to 1983
@@ -121,7 +121,8 @@ shinyServer(
                    sub <- t(data[as.Date(input$day)])
                    # Plotting that day's future strip
                    plot(sub, main = paste("Oil Futures Strip", input$day, sep=" "), type = "l", col = "green", xlab = "Contract Month", ylab = "Futures Price")
-           }, height = 650, width = 500)
+           }, height = "auto", width = "auto")
+           
                         
         }
 )
